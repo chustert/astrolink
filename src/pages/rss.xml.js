@@ -7,7 +7,7 @@ export async function GET() {
     title: 'Astro Learner | Blog',
     description: 'My journey learning Astro',
     site: 'https://my-blog-site.netlify.app',
-    items: posts.map((post:any) => ({
+    items: posts.map((post) => ({
       title: post.data.title,
       pubDate: post.data.pubDate,
       description: post.data.description,
