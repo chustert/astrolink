@@ -27,16 +27,24 @@ export default defineConfig({
   // Optimize the build configuration for the Edge runtime
   vite: {
     plugins: [
-      react({
-        include: [/\.js$/, /\.jsx$/, /\.ts$/, /\.tsx$/], // treat `.js` as JSX
-      }),
+      {
+        name: "esbuild-custom-loaders",
+        enforce: "pre",
+        transform(code, id) {
+          if (id.match(/devlink\/.*\.js$/)) {
+            return require("esbuild").transformSync(code, {
+              loader: "jsx",
+              sourcefile: id,
+            });
+          }
+          if (id.endsWith("webflow-loader.ts")) {
+            return require("esbuild").transformSync(code, {
+              loader: "ts",
+              sourcefile: id,
+            });
+          }
+        },
+      },
     ],
-    esbuild: {
-      loader: "jsx", // default loader
-      include: /(devlink\/.*\.js)$/, // only apply to your DevLink .js files
-    },
-    resolve: {
-      alias: import.meta.env.PROD ? { "react-dom/server": "react-dom/server.edge" } : undefined,
-    },
   },
 });
