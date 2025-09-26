@@ -21,6 +21,16 @@ This template is based on the [Astro Tutorial](https://docs.astro.build/en/tutor
 - Mobile-responsive navigation
 - SEO-optimized structure
 
+## Webflow DevLink Integration
+
+This template is specifically designed to work with Webflow's DevLink feature, allowing you to:
+
+- Design your website visually in Webflow
+- Export the design to this Astro project
+- Maintain the connection for easy updates and iterations
+
+The minimal styling approach ensures that Webflow's exported styles take precedence, giving you full control over the visual design while maintaining the performance benefits of Astro.
+
 ## Getting Started
 
 1. Clone this repository
@@ -71,15 +81,9 @@ This template is based on the [Astro Tutorial](https://docs.astro.build/en/tutor
 
 10. Start the development server: `npm run dev` 🙌
 
-## Webflow DevLink Integration
+## Host on Webflow Cloud
 
-This template is specifically designed to work with Webflow's DevLink feature, allowing you to:
-
-- Design your website visually in Webflow
-- Export the design to this Astro project
-- Maintain the connection for easy updates and iterations
-
-The minimal styling approach ensures that Webflow's exported styles take precedence, giving you full control over the visual design while maintaining the performance benefits of Astro.
+Follow the official Webflow instructions [here](https://developers.webflow.com/webflow-cloud/getting-started#open-webflow-cloud).
 
 ## Components Architecture
 

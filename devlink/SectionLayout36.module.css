@@ -1,0 +1,244 @@
+.section_layout36 {
+  background-color: var(--brand--background);
+  color: var(--brand--text);
+}
+
+.section_layout36:where(.w-variant-55abf53f-8567-8b36-91c5-da9fbfafc19e) {
+  background-color: var(--_primitives---colors--neutral);
+  color: var(--colors-brand--white);
+}
+
+.padding-global {
+  padding-right: var(--_layout---section-padding--padding-global);
+  padding-left: var(--_layout---section-padding--padding-global);
+}
+
+.padding-section-small {
+  padding-top: var(--_layout---section-padding--small);
+  padding-bottom: var(--_layout---section-padding--small);
+}
+
+@media screen and (max-width: 767px) {
+  .padding-section-small {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+
+.padding-section-medium {
+  padding-top: var(--_layout---section-padding--medium);
+  padding-bottom: var(--_layout---section-padding--medium);
+}
+
+.padding-section-large {
+  padding-top: var(--_layout---section-padding--large);
+  padding-bottom: var(--_layout---section-padding--large);
+}
+
+.container-large {
+  width: 100%;
+  max-width: var(--_layout---container--large);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-large.container_identifier-1 {
+  padding-top: 5rem;
+  padding-bottom: 6rem;
+}
+
+.container_identifier-1 {
+  padding-top: 7.5rem;
+  padding-bottom: 5rem;
+}
+
+.max-width-medium {
+  width: 100%;
+  max-width: var(--_sizes---max-width--medium);
+}
+
+.margin-bottom {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+@media screen and (max-width: 991px) {
+  .margin-bottom {
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .margin-bottom {
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-left: 0rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .margin-bottom {
+    margin-top: 0rem;
+    margin-right: 0rem;
+    margin-left: 0rem;
+  }
+}
+
+.margin-bottom.margin-xxlarge {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xxlarge {
+  margin: var(--_sizes---spacing--xxlarge);
+}
+
+.margin-bottom.margin-medium {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-medium {
+  margin: var(--_sizes---spacing--medium);
+}
+
+.margin-bottom.margin-custom3 {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-bottom.margin-custom1 {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-bottom.margin-tiny {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-tiny {
+  margin: var(--_sizes---spacing--tiny);
+}
+
+.margin-bottom.margin-small {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-small {
+  margin: var(--_sizes---spacing--small);
+}
+
+.margin-bottom.margin-large {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-large {
+  margin: var(--_sizes---spacing--large);
+}
+
+.margin-bottom.margin-0 {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-0 {
+  margin: var(--_sizes---spacing--none) var(--_sizes---spacing--tiny) var(--_sizes---spacing--none) var(--_sizes---spacing--none);
+}
+
+.margin-bottom.margin-xlarge {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xlarge {
+  margin: var(--_sizes---spacing--xlarge);
+}
+
+.margin-bottom.margin-xhuge {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xhuge {
+  margin: var(--_sizes---spacing--xhuge);
+}
+
+.margin-bottom.margin-xxhuge {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xxhuge {
+  margin: var(--_sizes---spacing--xxhuge);
+}
+
+.margin-bottom.margin-huge {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-huge {
+  margin: var(--_sizes---spacing--huge);
+}
+
+.margin-bottom.margin-xxsmall {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xxsmall {
+  margin: var(--_sizes---spacing--xxsmall);
+}
+
+.margin-bottom.margin-custom2 {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-bottom.margin-xsmall {
+  margin-top: 0rem;
+  margin-right: 0rem;
+  margin-left: 0rem;
+}
+
+.margin-xsmall {
+  margin: var(--_sizes---spacing--xsmall);
+}
+
+.heading-style-h3 {
+  font-family: var(--font-styles--heading);
+  font-size: var(--_typography---font-size--h3);
+  line-height: var(--_typography---line-height--large);
+  font-weight: var(--_typography---font-weight--regular);
+  letter-spacing: var(--_typography---letter-spacing--h3);
+}
+
+.text-size-medium {
+  font-size: var(--_typography---font-size--medium);
+  line-height: var(--_typography---line-height--xxlarge);
+  letter-spacing: var(--_typography---letter-spacing--medium);
+}
+
+.text-weight-bold {
+  font-weight: var(--_typography---font-weight--bold);
+}

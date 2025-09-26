@@ -1,0 +1,18 @@
+.navbar_link {
+  display: inline-block;
+  margin-right: 0px;
+  margin-left: 0px;
+  padding: 0.5rem 1rem;
+}
+
+.navbar_link:global(.w--current) {
+  color: hsla(0, 0.00%, 17.25%, 0.50);
+}
+
+@media screen and (max-width: 991px) {
+  .navbar_link {
+    position: static;
+    padding: 0.75rem 0rem;
+    font-size: 1.125rem;
+  }
+}

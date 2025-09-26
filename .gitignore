@@ -58,7 +58,6 @@ pnpm-lock.yaml
 # Webflow-specific
 webflow-cli.config.js
 .webflow/
-devlink/
 
 # Build artifacts
 *.tgz
