@@ -11,5 +11,8 @@
       "lastPrompted": 1758845853224,
       "version": "1.8.42"
     }
+  },
+  "cloud": {
+    "framework": "astro"
   }
 }

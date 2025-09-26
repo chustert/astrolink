@@ -6,16 +6,18 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "preview": "astro build && wrangler dev"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.9",
     "@astrojs/preact": "^4.0.2",
     "@astrojs/rss": "^4.0.11",
     "astro": "^5.1.7",
     "preact": "^10.25.4"
   },
   "devDependencies": {
-    "@webflow/webflow-cli": "^1.8.44"
+    "@webflow/webflow-cli": "^1.8.44",
+    "wrangler": "^4.40.1"
   }
 }

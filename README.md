@@ -83,7 +83,7 @@ The minimal styling approach ensures that Webflow's exported styles take precede
 
 ## Host on Webflow Cloud
 
-Follow the official Webflow instructions [here](https://developers.webflow.com/webflow-cloud/getting-started#open-webflow-cloud).
+Follow the official Webflow instructions [here](https://developers.webflow.com/webflow-cloud/bring-your-own-app).
 
 ## Components Architecture
 
