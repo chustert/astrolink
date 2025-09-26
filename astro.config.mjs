@@ -4,6 +4,8 @@ import cloudflare from "@astrojs/cloudflare"; // Import the Cloudflare adapter f
 import preact from "@astrojs/preact";
 import react from "@vitejs/plugin-react";
 
+import * as esbuild from "esbuild";
+
 // https://astro.build/config
 export default defineConfig({
   // Webflow Cloud Configuration
@@ -38,8 +40,8 @@ export default defineConfig({
             });
           }
           if (id.endsWith("webflow-loader.ts")) {
-            return require("esbuild").transformSync(code, {
-              loader: "ts",
+            return esbuild.transformSync(code, {
+              loader: "jsx",
               sourcefile: id,
             });
           }
