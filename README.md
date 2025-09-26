@@ -119,5 +119,5 @@ The following Webflow elements are supported for export through DevLink:
   - Block Quote
   - Social embeds (Facebook, X/Twitter, YouTube)
 
-⚠️ Ecommerce and CMS-specific elements are not supported
-⚠️ Component slots aren’t supported in Exported Components. Please [see documentation](https://developers.webflow.com/devlink/docs/component-export/design-guidelines/props-slots) on how to use DevLink Slots instead.
+⚠️ Ecommerce and CMS-specific elements are not supported  
+⚠️ Component slots aren’t supported in Exported Components. Please [see documentation](https://developers.webflow.com/devlink/docs/component-export/design-guidelines/props-slots) on how to use DevLink Slots instead.\
