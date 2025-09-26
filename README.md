@@ -85,6 +85,63 @@ The minimal styling approach ensures that Webflow's exported styles take precede
 
 Follow the official Webflow instructions [here](https://developers.webflow.com/webflow-cloud/bring-your-own-app).
 
+This guide is unfortunately not complete it seems. Because the from DevLink important Webflow components are .js files and not .jsx files, and Webfow Cloud runs Vite, the components weren't recognized and the build process of the app on Webflow Cloud threw an error.
+So, we have to make some further changes to our `astro.conifg.mjs` to make the Webflow Cloud build succeed:
+
+1. Run `npm install @astrojs/cloudflare @vitejs/plugin-react esbuild --save-dev`
+2. Add the following to your `astro.config.mjs`:
+
+```js
+import react from "@vitejs/plugin-react";
+import cloudflare from "@astrojs/cloudflare";
+import * as esbuild from "esbuild";
+
+export default defineConfig({
+  // Keep settings
+
+  // Webflow Cloud Configuration START
+  base: "/site",
+  output: "server", // Use the server output mode
+  // Use the Cloudflare adapter
+  adapter: cloudflare({
+    platformProxy: {
+      enabled: true,
+    },
+  }),
+  build: {
+    assetsPrefix: "/site",
+  },
+  // Optimize the build configuration for the Edge runtime
+  vite: {
+    plugins: [
+      react({
+        include: [/\.jsx?$/, /\.tsx?$/], // ensure React tooling sees JSX in .js/.jsx
+      }),
+      {
+        name: "devlink-jsx-loader",
+        enforce: "pre",
+        transform(code, id) {
+          if (id.match(/devlink\/.*\.js$/)) {
+            const result = esbuild.transformSync(code, {
+              loader: "jsx",
+              sourcefile: id,
+            });
+            return {
+              code: result.code,
+              map: result.map ? JSON.parse(result.map) : null, // parse the map
+            };
+          }
+          return null;
+        },
+      },
+    ],
+    // Webflow DevLink Configuration END
+  },
+});
+```
+
+Note, when [initialising a Webflow Cloud project](https://developers.webflow.com/webflow-cloud/getting-started) with `webflow cloud init` from scratch, Webflow DevLink imports the components in the required .jsx format.
+
 ## Components Architecture
 
 Principles for designing components in Webflow to ensure clean export, [read the documentation here](https://developers.webflow.com/devlink/docs/component-export/design-guidelines/component-architecture).

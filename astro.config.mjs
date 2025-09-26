@@ -1,15 +1,22 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import cloudflare from "@astrojs/cloudflare"; // Import the Cloudflare adapter for Webflow Cloud
-import preact from "@astrojs/preact";
-import react from "@vitejs/plugin-react";
 
+import preact from "@astrojs/preact";
+
+// Imports for Webflow Cloud build to succeed
+import react from "@vitejs/plugin-react";
+import cloudflare from "@astrojs/cloudflare";
 import * as esbuild from "esbuild";
 
 // https://astro.build/config
 export default defineConfig({
-  // Webflow Cloud Configuration
   site: "https://astrolink01.webflow.io",
+  integrations: [
+    // Enable React-compat so DevLink's React components run under Preact
+    preact({ compat: true }),
+  ],
+
+  // Webflow Cloud Configuration START
   base: "/site",
   output: "server", // Use the server output mode
   // Use the Cloudflare adapter
@@ -21,11 +28,6 @@ export default defineConfig({
   build: {
     assetsPrefix: "/site",
   },
-  // Webflow DevLink Configuration END
-  integrations: [
-    // Enable React-compat so DevLink's React components run under Preact
-    preact({ compat: true }),
-  ],
   // Optimize the build configuration for the Edge runtime
   vite: {
     plugins: [
@@ -50,5 +52,6 @@ export default defineConfig({
         },
       },
     ],
+    // Webflow DevLink Configuration END
   },
 });
