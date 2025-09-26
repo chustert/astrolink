@@ -1,10 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {SectionLayout36} from "../../devlink/SectionLayout36";
+import {SectionHeader28} from "../../devlink/SectionHeader28";
 
 const pageTitle = "Home Page";
 ---
 <BaseLayout pageTitle={pageTitle}>
+  
+  <SectionHeader28 slot="pageHeader" client:load />
 
   <SectionLayout36 variant="Gray BG" client:load />
   <SectionLayout36 client:load />
