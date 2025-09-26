@@ -14,5 +14,8 @@
     "@astrojs/rss": "^4.0.11",
     "astro": "^5.1.7",
     "preact": "^10.25.4"
+  },
+  "devDependencies": {
+    "@webflow/webflow-cli": "^1.8.44"
   }
 }

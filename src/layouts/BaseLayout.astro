@@ -1,7 +1,11 @@
 ---
 import Header from "../components/Header.astro";
+import {Footer1} from "../../devlink/Footer1";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+// Import Webflow DevLink base CSS so Webflow components render correctly
+import "../../devlink/global.css";
+import { DevLinkProvider } from "../../devlink/DevLinkProvider";
 const { pageTitle } = Astro.props;
 ---
 
@@ -14,12 +18,12 @@ const { pageTitle } = Astro.props;
     <title>{pageTitle}</title>
   </head>
   <body>
-    <Header />
-    <h1>{pageTitle}</h1>
-    <slot />
-    <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
+    <DevLinkProvider client:load>
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <Footer1 client:load />
+    </DevLinkProvider>
   </body>
 </html>
