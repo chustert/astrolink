@@ -83,41 +83,56 @@ The minimal styling approach ensures that Webflow's exported styles take precede
 
 ## Host on Webflow Cloud
 
-Follow the official Webflow instructions [here](https://developers.webflow.com/webflow-cloud/bring-your-own-app).
+Follow Webflow’s official guide: [Bring Your Own App](https://developers.webflow.com/webflow-cloud/bring-your-own-app)
+
+⚠️ Note: It seems the Webflow docs are not yet complete for apps using DevLink components.
+
+DevLink exports components as .js files containing JSX.  
+On Next.js / Vercel this works fine, because .js is treated as JSX automatically.  
+On Webflow Cloud, however, your app is built with Astro + Vite, and Vite does not parse JSX in .js files by default.
+
+That’s why the build fails without extra setup.
+
+### Fixing the build
 
 This guide is unfortunately not complete it seems. Because the from DevLink important Webflow components are .js files and not .jsx files, and Webfow Cloud runs Vite, the components weren't recognized and the build process of the app on Webflow Cloud threw an error.
 So, we have to make some further changes to our `astro.conifg.mjs` to make the Webflow Cloud build succeed:
 
-1. Run `npm install @astrojs/cloudflare @vitejs/plugin-react esbuild --save-dev`
-2. Add the following to your `astro.config.mjs`:
+1. Install the required dependencies: `npm install @astrojs/cloudflare @vitejs/plugin-react esbuild --save-dev`
+   - @astrojs/cloudflare → Astro adapter for Webflow Cloud (Cloudflare Workers runtime)
+   - @vitejs/plugin-react → JSX transform support
+   - esbuild → Used by a custom loader to process DevLink .js files
+2. Update your astro.config.mjs and add the following configuration:
 
 ```js
-import react from "@vitejs/plugin-react";
+import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
+import react from "@vitejs/plugin-react";
 import * as esbuild from "esbuild";
+import preact from "@astrojs/preact";
 
 export default defineConfig({
-  // Keep settings
-
-  // Webflow Cloud Configuration START
+  site: "https://<your-app>.webflow.io",
   base: "/site",
-  output: "server", // Use the server output mode
-  // Use the Cloudflare adapter
+  output: "server",
   adapter: cloudflare({
-    platformProxy: {
-      enabled: true,
-    },
+    platformProxy: { enabled: true },
   }),
   build: {
     assetsPrefix: "/site",
   },
-  // Optimize the build configuration for the Edge runtime
+  integrations: [
+    // Enables React-compat so DevLink's React components can run under Preact
+    preact({ compat: true }),
+  ],
   vite: {
     plugins: [
       react({
-        include: [/\.jsx?$/, /\.tsx?$/], // ensure React tooling sees JSX in .js/.jsx
+        // Allow JSX in .js, .jsx, .ts, .tsx
+        include: [/\.jsx?$/, /\.tsx?$/],
       }),
       {
+        // Custom loader: only transforms DevLink .js files
         name: "devlink-jsx-loader",
         enforce: "pre",
         transform(code, id) {
@@ -128,19 +143,20 @@ export default defineConfig({
             });
             return {
               code: result.code,
-              map: result.map ? JSON.parse(result.map) : null, // parse the map
+              map: result.map ? JSON.parse(result.map) : null,
             };
           }
-          return null;
+          return null; // leave all other files alone
         },
       },
     ],
-    // Webflow DevLink Configuration END
   },
 });
 ```
 
-Note, when [initialising a Webflow Cloud project](https://developers.webflow.com/webflow-cloud/getting-started) with `webflow cloud init` from scratch, Webflow DevLink imports the components in the required .jsx format.
+This works because the React plugin tells Vite to expect JSX/TSX across `.js`, `.jsx`, `.ts`, and `.tsx` files, while the custom DevLink loader specifically patches only the `devlink/\*.js` files by transforming them with esbuild’s JSX mode; other files, such as `webflow-loader.ts`, are left untouched so that Astro’s TypeScript support can handle them correctly, and finally, the Cloudflare adapter combined with `output: "server"` ensures that Astro builds for Webflow Cloud’s runtime.
+
+☝️ Note, when [initialising a Webflow Cloud project](https://developers.webflow.com/webflow-cloud/getting-started) with `webflow cloud init` from scratch, Webflow DevLink imports the components in the required .jsx format.
 
 ## Components Architecture
 
