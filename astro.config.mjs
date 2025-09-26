@@ -28,18 +28,15 @@ export default defineConfig({
   vite: {
     plugins: [
       react({
-        // 👇 Let Vite parse JSX in .js files (just like CRA/Next.js)
-        include: [/\.jsx?$/, /\.tsx?$/],
+        include: [/\.js$/, /\.jsx$/, /\.ts$/, /\.tsx$/], // treat `.js` as JSX
       }),
     ],
+    esbuild: {
+      loader: "jsx", // default loader
+      include: /(devlink\/.*\.js)$/, // only apply to your DevLink .js files
+    },
     resolve: {
-      // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
-      // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
-      alias: import.meta.env.PROD
-        ? {
-            "react-dom/server": "react-dom/server.edge",
-          }
-        : undefined,
+      alias: import.meta.env.PROD ? { "react-dom/server": "react-dom/server.edge" } : undefined,
     },
   },
 });
