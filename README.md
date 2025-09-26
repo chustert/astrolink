@@ -59,7 +59,7 @@ This template is based on the [Astro Tutorial](https://docs.astro.build/en/tutor
       - CSS modules for component-specific styling
       - A global CSS file for shared styles
       - A DevLinkProvider component for handling interactions
-9. We added the `DevLinkProvider` element for you in the BaseLayout.astro so you can use Webflow's native interactions. Now use your components!
+9. We added the `DevLinkProvider` element for you in the BaseLayout.astro so you can use Webflow's native interactions. Now use your components!  
    Example:
 
    ```js
@@ -120,4 +120,4 @@ The following Webflow elements are supported for export through DevLink:
   - Social embeds (Facebook, X/Twitter, YouTube)
 
 ⚠️ Ecommerce and CMS-specific elements are not supported  
-⚠️ Component slots aren’t supported in Exported Components. Please [see documentation](https://developers.webflow.com/devlink/docs/component-export/design-guidelines/props-slots) on how to use DevLink Slots instead.\
+⚠️ Component slots aren’t supported in Exported Components. Please [see documentation](https://developers.webflow.com/devlink/docs/component-export/design-guidelines/props-slots) on how to use DevLink Slots instead.
