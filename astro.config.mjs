@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 import cloudflare from "@astrojs/cloudflare"; // Import the Cloudflare adapter for Webflow Cloud
 import preact from "@astrojs/preact";
+import react from "@vitejs/plugin-react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,6 +26,12 @@ export default defineConfig({
   ],
   // Optimize the build configuration for the Edge runtime
   vite: {
+    plugins: [
+      react({
+        // 👇 Let Vite parse JSX in .js files (just like CRA/Next.js)
+        include: [/\.jsx?$/, /\.tsx?$/],
+      }),
+    ],
     resolve: {
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
