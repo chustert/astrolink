@@ -29,22 +29,21 @@ export default defineConfig({
   // Optimize the build configuration for the Edge runtime
   vite: {
     plugins: [
+      react({
+        include: [/\.jsx?$/, /\.tsx?$/], // ensure React tooling sees JSX in .js/.jsx
+      }),
       {
-        name: "esbuild-custom-loaders",
+        name: "devlink-jsx-loader",
         enforce: "pre",
         transform(code, id) {
+          // ✅ ONLY touch devlink .js files, not .ts files
           if (id.match(/devlink\/.*\.js$/)) {
-            return require("esbuild").transformSync(code, {
-              loader: "jsx",
-              sourcefile: id,
-            });
-          }
-          if (id.endsWith("webflow-loader.ts")) {
             return esbuild.transformSync(code, {
               loader: "jsx",
               sourcefile: id,
             });
           }
+          return null; // let Astro handle everything else (including webflow-loader.ts)
         },
       },
     ],
