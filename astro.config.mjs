@@ -36,14 +36,17 @@ export default defineConfig({
         name: "devlink-jsx-loader",
         enforce: "pre",
         transform(code, id) {
-          // ✅ ONLY touch devlink .js files, not .ts files
           if (id.match(/devlink\/.*\.js$/)) {
-            return esbuild.transformSync(code, {
+            const result = esbuild.transformSync(code, {
               loader: "jsx",
               sourcefile: id,
             });
+            return {
+              code: result.code,
+              map: result.map ? JSON.parse(result.map) : null, // parse the map
+            };
           }
-          return null; // let Astro handle everything else (including webflow-loader.ts)
+          return null;
         },
       },
     ],
