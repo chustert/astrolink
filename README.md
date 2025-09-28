@@ -96,7 +96,7 @@ That’s why the build fails without extra setup.
 ### Fixing the build
 
 This guide is unfortunately not complete it seems. Because the from DevLink important Webflow components are .js files and not .jsx files, and Webfow Cloud runs Vite, the components weren't recognized and the build process of the app on Webflow Cloud threw an error.
-So, we have to make some further changes to our `astro.conifg.mjs` to make the Webflow Cloud build succeed:
+So, we have to make some further changes to our `astro.config.mjs` to make the Webflow Cloud build succeed:
 
 1. Install the required dependencies: `npm install @astrojs/cloudflare @vitejs/plugin-react esbuild --save-dev`
    - @astrojs/cloudflare → Astro adapter for Webflow Cloud (Cloudflare Workers runtime)
